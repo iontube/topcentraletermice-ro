@@ -1,0 +1,35 @@
+---
+import products from '../data/products.json';
+
+const siteUrl = 'https://topcentraletermice.ro';
+const now = new Date().toISOString();
+const all = [...(products.gaz || []), ...(products.peleti || []), ...(products.lemne || [])];
+
+const schemas = [
+  { '@context': 'https://schema.org', '@type': 'WebSite', name: 'topcentraletermice.ro', url: siteUrl, description: 'Cele mai bune centrale termice din Romania, comparate si recomandate', inLanguage: 'ro' },
+  { '@context': 'https://schema.org', '@type': 'Organization', name: 'topcentraletermice.ro', url: siteUrl, logo: `${siteUrl}/assets/images/logo-topcentraletermice.webp`, description: 'Site independent de comparatii si recomandari de centrale termice', contactPoint: { '@type': 'ContactPoint', email: 'contact@topcentraletermice.ro', contactType: 'customer service', availableLanguage: 'Romanian' } },
+  { '@context': 'https://schema.org', '@type': 'Article', headline: `Cele mai bune centrale termice 2026: ${all.length} modele comparate`, description: 'Ce centrala termica sa cumpar in 2026? Am comparat centrale pe gaz, pe peleti si pe lemne. Ariston, Viessmann, Vaillant, Ferroli si Fornello.', image: `${siteUrl}/assets/images/og-cover.webp`, datePublished: '2026-04-01T08:00:00+03:00', dateModified: now, url: siteUrl, inLanguage: 'ro', author: { '@type': 'Person', name: 'Echipa topcentraletermice.ro', url: siteUrl }, publisher: { '@type': 'Organization', name: 'topcentraletermice.ro', url: siteUrl, logo: { '@type': 'ImageObject', url: `${siteUrl}/favicon.svg` } } },
+  { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Acasa', item: siteUrl }, { '@type': 'ListItem', position: 2, name: 'Cele mai bune centrale termice 2026', item: siteUrl }] },
+  { '@context': 'https://schema.org', '@type': 'ItemList', name: 'Cele mai bune centrale termice recomandate', numberOfItems: all.length, itemListElement: all.map((p, i) => ({ '@type': 'ListItem', position: i + 1, name: p.name, url: `${siteUrl}/#recenzie-${p.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-+$/, '')}` })) },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: [
+    { '@type': 'Question', name: 'Ce centrala termica sa cumpar in 2026?', acceptedAnswer: { '@type': 'Answer', text: 'Depinde de combustibil si suprafata. Pe gaz: Ariston CLAS ONE WIFI 24 pentru apartamente, Viessmann Vitodens 050-W pentru case. Pe peleti: Fornello Pellet King 35 kW. Pe lemne: Fornello JOKER 24 kW cu automatizare.' } },
+    { '@type': 'Question', name: 'Centrala pe gaz vs peleti vs lemne: care e mai buna?', acceptedAnswer: { '@type': 'Answer', text: 'Gaz: cel mai confortabil, fara alimentare manuala. Peleti: automatizat, combustibil ieftin, autonomie 2-4 zile. Lemne: cel mai ieftin combustibil dar necesita alimentare manuala de 2-3 ori pe zi.' } },
+    { '@type': 'Question', name: 'Cat costa incalzirea pe gaz vs peleti vs lemne?', acceptedAnswer: { '@type': 'Answer', text: 'Pe gaz: 3.000-5.000 RON/sezon. Pe peleti: 2.500-4.000 RON/sezon. Pe lemne: 1.500-2.500 RON/sezon. Preturile variaza in functie de suprafata si izolatie.' } },
+    { '@type': 'Question', name: 'Ce putere trebuie sa aiba centrala termica?', acceptedAnswer: { '@type': 'Answer', text: 'Regula simpla: 1 kW per 10 mp de suprafata incalzita cu izolatie medie. Casa de 150 mp necesita 15-18 kW. Casa veche fara izolatie necesita 20-25 kW pentru aceeasi suprafata.' } },
+    { '@type': 'Question', name: 'Merita o centrala in condensare?', acceptedAnswer: { '@type': 'Answer', text: 'Da. Randamentul de 108% vs 92% la una conventionala inseamna 15-20% economie la gaz. Diferenta de pret se recupereaza in 2-3 sezoane.' } },
+    { '@type': 'Question', name: 'Ce inseamna centrala cu gazeificare?', acceptedAnswer: { '@type': 'Answer', text: 'Gazeificarea transforma lemnul in gaz combustibil inainte de ardere. Randamentul creste de la 60-75% la peste 90%. Consumul de lemne scade cu 30-40% fata de arderea standard.' } },
+    { '@type': 'Question', name: 'Ce brand de centrala pe gaz e cel mai bun?', acceptedAnswer: { '@type': 'Answer', text: 'Viessmann si Vaillant sunt referinta in calitate germana. Ariston ofera cel mai bun raport calitate-pret cu Wi-Fi. Motan are cel mai bun service in Romania. Ferroli si Immergas sunt branduri italiene fiabile.' } },
+    { '@type': 'Question', name: 'Cand e cel mai bun moment sa cumpar o centrala?', acceptedAnswer: { '@type': 'Answer', text: 'Vara (iunie-august) cand cererea e mica si preturile sunt mai mici cu 10-15%. Evita toamna cand cererea explodeaza si instalatorii au program plin.' } },
+  ] },
+  { '@context': 'https://schema.org', '@type': 'HowTo', name: 'Cum alegi cea mai buna centrala termica in 2026', description: 'Recomandari in 7 pasi pentru alegerea centralei termice potrivite.', totalTime: 'PT20M', step: [
+    { '@type': 'HowToStep', position: 1, name: 'Alege combustibilul', text: 'Gaz daca ai retea. Peleti daca vrei automatizare fara gaz. Lemne daca vrei cel mai mic cost de operare.' },
+    { '@type': 'HowToStep', position: 2, name: 'Calculeaza puterea necesara', text: '1 kW per 10 mp cu izolatie medie. Adauga 20% pentru case vechi fara izolatie.' },
+    { '@type': 'HowToStep', position: 3, name: 'Alege tipul de ardere', text: 'Condensare pe gaz, cu automatizare pe peleti, cu gazeificare pe lemne.' },
+    { '@type': 'HowToStep', position: 4, name: 'Verifica ce include pachetul', text: 'Kit evacuare, termostat, pompa, vas expansiune. Unele sunt incluse, altele se cumpara separat.' },
+    { '@type': 'HowToStep', position: 5, name: 'Verifica service-ul in zona ta', text: 'Motan si Ariston au cea mai extinsa retea. Viessmann si Vaillant au service premium.' },
+    { '@type': 'HowToStep', position: 6, name: 'Verifica compatibilitatea cu cosul de fum', text: 'Centralele pe gaz in condensare necesita cos de fum din material rezistent la aciditate.' },
+    { '@type': 'HowToStep', position: 7, name: 'Compara preturile si monteaza cu instalator autorizat', text: 'Montajul trebuie facut de instalator autorizat ISCIR pentru garantie si siguranta.' },
+  ] },
+];
+---
+{schemas.map(s => <script type="application/ld+json" set:html={JSON.stringify(s)} />)}

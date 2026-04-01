@@ -1,0 +1,334 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import ProductCard from '../components/ProductCard.astro';
+import ProductReview from '../components/ProductReview.astro';
+import SchemaMarkup from '../components/SchemaMarkup.astro';
+import Footer from '../components/Footer.astro';
+import products from '../data/products.json';
+
+const title = 'Cele mai bune centrale termice 2026: pe gaz, peleti si lemne comparate';
+const description = 'Ce centrala termica sa cumpar in 2026? Am comparat 20 de centrale termice pe gaz in condensare, pe peleti cu automatizare si pe lemne cu gazeificare. Ariston, Viessmann, Vaillant, Motan, Ferroli si Fornello.';
+const allProducts = [...(products.gaz || []), ...(products.peleti || []), ...(products.lemne || [])];
+const count = allProducts.length;
+const now = new Date();
+const updated = now.toLocaleDateString('ro-RO', { day: 'numeric', month: 'long', year: 'numeric' });
+const isoDate = now.toISOString().split('T')[0];
+---
+<Layout title={title} description={description}>
+  <SchemaMarkup />
+  <Nav />
+
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="hero__inner">
+      <div class="hero__left">
+        <div class="hero__tag"><time datetime={isoDate}>Actualizat {updated}</time></div>
+        <h1>Ce centrala termica sa cumpar in <em>2026</em></h1>
+        <p class="hero__sub">{count} centrale termice comparate pe putere, consum si fiabilitate. Centrale pe gaz cu condensare, pe peleti cu automatizare si pe lemne cu gazeificare.</p>
+        <div class="hero__actions">
+          <a href="#top-centrale" class="btn btn--fire">Vezi top centrale</a>
+          <a href="#recomandari" class="btn btn--ghost">Cum alegi corect</a>
+        </div>
+      </div>
+      <div class="hero__right">
+        <div class="hero__stats">
+          <div class="hero__stat">
+            <div class="hero__stat-val">{count}</div>
+            <div class="hero__stat-lbl">Modele</div>
+          </div>
+          <div class="hero__stat">
+            <div class="hero__stat-val">3</div>
+            <div class="hero__stat-lbl">Combustibili</div>
+          </div>
+          <div class="hero__stat">
+            <div class="hero__stat-val">2026</div>
+            <div class="hero__stat-lbl">Actualizat</div>
+          </div>
+        </div>
+        <p class="hero__right-text">Ariston, Viessmann, Vaillant, Motan, Ferroli si Fornello. De la 24 kW pentru apartamente la 46 kW pentru case mari.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOP 3 -->
+  <section id="top-centrale">
+    <div class="wrap">
+      <div class="sec-head sec-head--center">
+        <span class="sec-head__tag">Top 3 recomandate</span>
+        <h2>Cele mai bune centrale termice in 2026</h2>
+        <p>Cate o recomandare per tip de combustibil. Citeste recenziile complete mai jos.</p>
+      </div>
+      <div class="top3">
+        <a href={`#recenzie-${products.gaz[0].name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-+$/, '')}`} class="top3__card top3__card--gold">
+          <span class="top3__medal top3__medal--gold">1</span>
+          <div class="top3__visual"><img src={`/assets/images/products/${products.gaz[0].slug}.webp`} alt={products.gaz[0].name} width="68" height="68" loading="lazy" /></div>
+          <div class="top3__body">
+            <span class="top3__cat">Pe Gaz: Best Buy</span>
+            <span class="top3__name">{products.gaz[0].name}</span>
+            <span class="top3__why">Wi-Fi, condensare, schimbator inox la cel mai bun pret</span>
+          </div>
+        </a>
+        <a href={`#recenzie-${products.peleti[2].name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-+$/, '')}`} class="top3__card top3__card--silver">
+          <span class="top3__medal top3__medal--silver">2</span>
+          <div class="top3__visual"><img src={`/assets/images/products/${products.peleti[2].slug}.webp`} alt={products.peleti[2].name} width="68" height="68" loading="lazy" /></div>
+          <div class="top3__body">
+            <span class="top3__cat">Pe Peleti: Complet echipat</span>
+            <span class="top3__name">{products.peleti[2].name}</span>
+            <span class="top3__why">35 kW cu telecomanda, aprindere automata si buncar 80L</span>
+          </div>
+        </a>
+        <a href={`#recenzie-${products.lemne[0].name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-+$/, '')}`} class="top3__card top3__card--bronze">
+          <span class="top3__medal top3__medal--bronze">3</span>
+          <div class="top3__visual"><img src={`/assets/images/products/${products.lemne[0].slug}.webp`} alt={products.lemne[0].name} width="68" height="68" loading="lazy" /></div>
+          <div class="top3__body">
+            <span class="top3__cat">Pe Lemne: Cu automatizare</span>
+            <span class="top3__name">{products.lemne[0].name}</span>
+            <span class="top3__why">24 kW cu ventilator si control automat la cel mai mic pret</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- GAZ -->
+  {products.gaz?.length > 0 && (
+  <section id="gaz" class="fade-up" style="background:var(--surface-alt)">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-head__tag">Centrale pe gaz</span>
+        <h2>Cele mai bune centrale termice pe gaz in condensare</h2>
+        <p>7 centrale pe gaz cu condensare comparate. Modele cu Wi-Fi, control vocal, schimbator din otel inoxidabil si kit evacuare inclus. Ariston, Viessmann, Vaillant, Immergas, Motan si Ferroli.</p>
+      </div>
+      <div class="products">
+        {products.gaz.map((p, i) => (
+          <ProductCard name={p.name} slug={p.slug} affiliate={p.affiliate} specs={p.specs} summary={p.summary} badge={i === 0 ? 'Best Buy Gaz' : undefined} badgeType="top" />
+        ))}
+      </div>
+    </div>
+  </section>
+  )}
+
+  {products.gaz?.length > 0 && (
+  <section>
+    <div class="wrap">
+      <div class="sec-head"><span class="sec-head__tag">Analize detaliate</span><h2>Recenzie detaliata pentru fiecare centrala pe gaz</h2></div>
+      {products.gaz.map(p => <ProductReview name={p.name} slug={p.slug} affiliate={p.affiliate} specs={p.specs} review={p.review} />)}
+    </div>
+  </section>
+  )}
+
+  <!-- PELETI -->
+  {products.peleti?.length > 0 && (
+  <section id="peleti" class="fade-up" style="background:var(--surface-alt)">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-head__tag">Centrale pe peleti</span>
+        <h2>Cele mai bune centrale termice pe peleti</h2>
+        <p>7 centrale si termoseminee pe peleti comparate. Modele cu aprindere automata, telecomanda, Wi-Fi si buncari de la 25 la 88 kg. Fornello si Fiama Fuoco de la 8 la 40 kW.</p>
+      </div>
+      <div class="products">
+        {products.peleti.map((p, i) => (
+          <ProductCard name={p.name} slug={p.slug} affiliate={p.affiliate} specs={p.specs} summary={p.summary} badge={i === 2 ? 'Best Value' : undefined} badgeType="value" />
+        ))}
+      </div>
+    </div>
+  </section>
+  )}
+
+  {products.peleti?.length > 0 && (
+  <section>
+    <div class="wrap">
+      <div class="sec-head"><span class="sec-head__tag">Analize detaliate</span><h2>Recenzie detaliata pentru fiecare centrala pe peleti</h2></div>
+      {products.peleti.map(p => <ProductReview name={p.name} slug={p.slug} affiliate={p.affiliate} specs={p.specs} review={p.review} />)}
+    </div>
+  </section>
+  )}
+
+  <!-- LEMNE -->
+  {products.lemne?.length > 0 && (
+  <section id="lemne" class="fade-up" style="background:var(--surface-alt)">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-head__tag">Centrale pe lemne</span>
+        <h2>Cele mai bune centrale termice pe lemne</h2>
+        <p>6 centrale si cazane pe lemne comparate. De la cazane simple la centrale cu gazeificare si pachete complete cu calorifere. Fornello, Termax, BlauTech, ECO Plus si Arca de la 24 la 46 kW.</p>
+      </div>
+      <div class="products">
+        {products.lemne.map((p, i) => (
+          <ProductCard name={p.name} slug={p.slug} affiliate={p.affiliate} specs={p.specs} summary={p.summary} badge={i === 0 ? 'Cu automatizare' : undefined} badgeType="cheap" />
+        ))}
+      </div>
+    </div>
+  </section>
+  )}
+
+  {products.lemne?.length > 0 && (
+  <section>
+    <div class="wrap">
+      <div class="sec-head"><span class="sec-head__tag">Analize detaliate</span><h2>Recenzie detaliata pentru fiecare centrala pe lemne</h2></div>
+      {products.lemne.map(p => <ProductReview name={p.name} slug={p.slug} affiliate={p.affiliate} specs={p.specs} review={p.review} />)}
+    </div>
+  </section>
+  )}
+
+  <!-- RECOMANDARI placeholder -->
+  <section id="recomandari" style="background:var(--surface-alt)">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-head__tag">Recomandari 2026</span>
+        <h2>Cum alegi cea mai buna centrala termica</h2>
+      </div>
+      <div class="guide">
+        <img src="/assets/images/cum-alegi-cea-mai-buna-centrala-termica-2026.webp" alt="Cum alegi cea mai buna centrala termica in 2026 - recomandari practice" width="1200" height="600" loading="lazy" style="border-radius:var(--r-lg);margin-bottom:1.5rem;width:100%;height:auto" />
+
+        <p>Alegerea unei <strong>centrale termice</strong> este una dintre cele mai importante decizii pentru o casa. O centrala buna incalzeste eficient 15-20 de ani. Una gresita consuma mult, se strica des si costa mai mult pe termen lung decat diferenta de pret de la achizitie. Am comparat 20 de centrale disponibile in Romania in 2026 si mai jos iti explicam ce conteaza cand alegi.</p>
+
+        <h3>Gaz, peleti sau lemne: ce combustibil sa alegi</h3>
+        <img src="/assets/images/comparatie-cost-incalzire-gaz-peleti-lemne-romania.webp" alt="Comparatie cost incalzire pe gaz vs peleti vs lemne in Romania" width="1200" height="600" loading="lazy" style="border-radius:var(--r-lg);margin-bottom:1.25rem;width:100%;height:auto" />
+        <p>Prima decizie: ce arde centrala ta. Fiecare combustibil are avantaje si dezavantaje clare:</p>
+        <ul>
+          <li><strong>Centrala termica pe gaz</strong> este cea mai confortabila. Porneste si se opreste automat, nu trebuie sa alimentezi nimic manual, nu ai praf sau cenusa. Costul pe sezon pentru o casa de 150 mp este de 3.000-5.000 RON in functie de izolatie si pret gaz. Necesita racord la reteaua de gaz. Modele recomandate: <a href="#recenzie-centrala-termica-murala-in-condensare-ariston-clas-one-wifi-24">Ariston CLAS ONE WIFI 24</a> pentru apartamente si <a href="#recenzie-centrala-termica-in-condensare-viessmann-vitodens-050-w-25-b0ka">Viessmann Vitodens 050-W</a> pentru case.</li>
+          <li><strong>Centrala termica pe peleti</strong> este semiautomata. Buncarul alimenteaza arzatorul automat pe perioade de 1-4 zile. Costul pe sezon este de 2.500-4.000 RON. Nu necesita racord la gaz. Necesita spatiu de depozitare pentru peleti si curatare periodica. <a href="#recenzie-centrala-termica-monobloc-pe-peleti-fornello-pellet-king-35-kw">Fornello Pellet King 35 kW</a> cu telecomanda si aprindere automata este cel mai confortabil model din selectie.</li>
+          <li><strong>Centrala termica pe lemne</strong> are cel mai mic cost de operare: 1.500-2.500 RON pe sezon. Dar necesita alimentare manuala de 2-3 ori pe zi si curatare frecventa a cenusii. <a href="#recenzie-centrala-pe-combustibil-solid-lemn-carbune-fornello-joker-24-kw">Fornello JOKER 24 kW</a> cu automatizare reduce efortul prin controlul automat al arderii.</li>
+        </ul>
+
+        <h3>Ce putere trebuie sa aiba centrala termica</h3>
+        <p>Regula de baza: <strong>1 kW per 10 mp</strong> de suprafata incalzita cu izolatie medie. O <strong>centrala termica pentru apartament de 50 mp</strong> necesita minim 5-6 kW. O <strong>centrala termica pentru casa de 150 mp</strong> necesita 15-18 kW. O casa veche fara izolatie necesita 20-25 kW pentru aceeasi suprafata.</p>
+        <p>La centralele pe gaz murale, puterea standard este de <strong>24 kW</strong>, care acopera case de pana la 200 mp cu izolatie normala si asigura si apa calda menajera. Toate cele 7 centrale pe gaz din selectia noastra au 24-25.5 kW, suficient pentru majoritatea locuintelor.</p>
+        <p>La centralele pe peleti si lemne, puterile sunt mai variate: de la 8 kW (<a href="#recenzie-semineu-pe-peleti-cu-aer-cald-fiama-fuoco-8-kw">Fiama Fuoco</a> pentru o camera) pana la 46 kW (<a href="#recenzie-centrala-cazan-pe-lemn-carbune-termax-nordik-46-kw">Termax Nordik</a> pentru case foarte mari). Nu lua centrala prea puternica: va porni si se va opri frecvent (ciclare), ceea ce reduce eficienta si uzeza componente.</p>
+
+        <h3>Centrala pe gaz: condensare vs conventionala</h3>
+        <img src="/assets/images/centrala-termica-pe-gaz-condensare-montaj-perete.webp" alt="Centrala termica pe gaz in condensare montata pe perete - instalatie moderna" width="1200" height="600" loading="lazy" style="border-radius:var(--r-lg);margin-bottom:1.25rem;width:100%;height:auto" />
+        <p>In 2026 nu mai are sens sa cumperi o <strong>centrala termica conventionala</strong>. Toate cele 7 centrale pe gaz din selectie sunt <strong>in condensare</strong>, cu randament de 108% (masurat pe puterea calorifica inferioara). Asta inseamna 15-20% mai putin gaz consumat fata de o centrala conventionala cu randament de 92%.</p>
+        <p><strong>Cat consuma o centrala termica pe gaz de 24 kW?</strong> In condensare, pentru o casa de 150 mp cu izolatie medie, consumul de gaz pe sezonul rece (octombrie-martie) este de 1.500-2.500 mc. La pretul curent al gazului, asta inseamna 3.000-5.000 RON. O centrala conventionala ar consuma cu 15-20% mai mult la aceeasi suprafata.</p>
+        <p>Condensarea necesita un <strong>cos de fum rezistent la aciditate</strong> (PPH sau inox), nu cos din caramida. Daca ai cos vechi din caramida, trebuie tubulaturat cu PPH inainte de montaj. Costul tubulaturii este de 300-800 RON in functie de lungime.</p>
+
+        <h3>Centrala pe peleti: ce conteaza la alegere</h3>
+        <img src="/assets/images/centrala-pe-peleti-buncar-automatizare-camera-tehnica.webp" alt="Centrala pe peleti cu buncar si automatizare in camera tehnica" width="1200" height="600" loading="lazy" style="border-radius:var(--r-lg);margin-bottom:1.25rem;width:100%;height:auto" />
+        <p>La o <strong>centrala pe peleti</strong> conteaza trei lucruri: dimensiunea buncarului, tipul de curatare si prezenta aprinderii automate.</p>
+        <p><strong>Buncarul</strong> determina cat de des trebuie sa incarci peleti. Un buncar de 25 kg (<a href="#recenzie-termosemineu-centrala-pe-peleti-fornello-royal-30-kw">Fornello Royal 30 kW</a>) necesita reincarcare zilnica. Un buncar de 70-88 kg (<a href="#recenzie-centrala-peleti-fornello-pellet-king-30-kw">Fornello Pellet King 30 kW</a> si <a href="#recenzie-centrala-pe-peleti-fornello-slimpel-easy-40-kw">Slimpel Easy 40 kW</a>) functioneaza 2-4 zile fara interventie.</p>
+        <p><strong>Curatarea mecanica</strong> a arzatorului si a schimbatorului de caldura reduce intretinerea. Fornello Slimpel Easy 40 kW are curatare mecanica. Restul necesita curatare manuala la 1-2 saptamani. <strong>Aprinderea automata</strong> elimina nevoia de aprindere manuala cu gel sau chibrit. Majoritatea modelelor din selectie au aprindere automata.</p>
+        <p>Consumul de peleti este de 4-8 kg/ora la putere maxima, in functie de putere. Un sac de 15 kg costa 14-18 RON. La o casa de 150 mp, costul pe sezon este de 2.500-4.000 RON in functie de izolatie si temperatura setata.</p>
+
+        <h3>Centrala pe lemne: ardere standard vs gazeificare</h3>
+        <img src="/assets/images/centrala-pe-lemne-gazeificare-camera-tehnica-instalatie.webp" alt="Centrala pe lemne cu gazeificare in camera tehnica cu lemne stivuite" width="1200" height="600" loading="lazy" style="border-radius:var(--r-lg);margin-bottom:1.25rem;width:100%;height:auto" />
+        <p>La centralele pe lemne exista doua tipuri de ardere: <strong>standard</strong> (directa) si <strong>gazeificare</strong>. Diferenta de randament este semnificativa: 60-75% la ardere standard vs peste 90% la gazeificare.</p>
+        <p><a href="#recenzie-centrala-pe-lemne-cu-gazeificare-arca-aspiro-43r-41-kw">Arca Aspiro 43R</a> este singura centrala cu gazeificare din selectie. Consuma cu 30-40% mai putine lemne decat o centrala standard de aceeasi putere. Investitia mai mare la achizitie se recupereaza in 2-3 sezoane din economia de combustibil.</p>
+        <p>Centralele pe lemne cu <strong>ventilator si automatizare</strong> ca <a href="#recenzie-centrala-pe-combustibil-solid-lemn-carbune-fornello-joker-24-kw">Fornello JOKER 24 kW</a> controleaza debitul de aer automat, imbunatatind eficienta cu 10-15% fata de centralele fara ventilator ca <a href="#recenzie-cazan-pe-lemne-din-tabla-de-otel-28-kw-pmsbm28b-blautech">BlauTech 28 kW</a>.</p>
+        <p>Lemnele trebuie sa aiba umiditate sub 25% pentru ardere eficienta (ideal sub 20%). Lemnele proaspat taiate au 40-50% umiditate si trebuie uscate 1-2 ani. Un metru ster de lemne uscate costa 200-350 RON in functie de zona si esenta.</p>
+
+        <h3>Wi-Fi, termostat si control de la distanta</h3>
+        <p>Tot mai multe <strong>centrale termice cu Wi-Fi</strong> permit control de pe telefon. <a href="#recenzie-centrala-termica-murala-in-condensare-ariston-clas-one-wifi-24">Ariston CLAS ONE WIFI 24</a> si <a href="#recenzie-centrala-termica-in-condensare-viessmann-vitodens-050-w-25-b0ka">Viessmann Vitodens 050-W</a> ofera Wi-Fi integrat cu aplicatii dedicate. <a href="#recenzie-centrala-termica-murala-in-condensare-ariston-alteas-one-net-24">Ariston ALTEAS ONE+ NET</a> include si senzor de camera care regleaza temperatura automat.</p>
+        <p>Daca centrala nu are Wi-Fi, un <strong>termostat wireless programabil</strong> de 150-300 RON adauga control pe ore si zile. <a href="#recenzie-set-centrala-termica-24-kw-motan-condens-050-termostat-fara-fir-th510-rts-filtru-antimagnetia-10000-gauss">Motan Condens 050 Set</a> include termostat wireless in pachet.</p>
+        <p>La centralele pe peleti, <a href="#recenzie-semineu-pe-peleti-cu-aer-cald-fiama-fuoco-8-kw">Fiama Fuoco 8 kW</a> ofera Wi-Fi la un semineu pe peleti, o functie rara in aceasta categorie de pret.</p>
+
+        <h3>Ce brand sa alegi: Ariston, Viessmann, Vaillant, Motan, Ferroli</h3>
+        <ul>
+          <li><strong>Ariston</strong>: cel mai bun raport calitate-pret cu Wi-Fi si control vocal. Service bun in Romania. <strong>Centrala termica Ariston</strong> este alegerea pentru apartamente si case care vor conectivitate.</li>
+          <li><strong>Viessmann</strong>: calitate germana de referinta cu schimbator Inox-Radial. Fiabilitate pe termen lung. <strong>Centrala termica Viessmann</strong> este investitia pe 20+ ani.</li>
+          <li><strong>Vaillant</strong>: alt brand german premium cu 150+ ani de experienta. Service premium in Romania. <strong>Centrala termica Vaillant</strong> este referinta in fiabilitate.</li>
+          <li><strong>Motan</strong>: brand romanesc cu cel mai bun service din tara. Piese pe stoc si interventii rapide. <strong>Centrala termica Motan</strong> este alegerea pragmatica.</li>
+          <li><strong>Ferroli</strong>: brand italian cu Multi Combustion Control. Flexibil pe metan si GPL. <strong>Centrala termica Ferroli</strong> este pentru zone cu calitate variabila a gazului.</li>
+          <li><strong>Immergas</strong>: brand italian cu pachete complete (kit evacuare + robineti inclusi). <strong>Centrala Immergas</strong> ofera cel mai bun pret total de montaj.</li>
+          <li><strong>Fornello</strong>: producator romanesc specializat pe peleti si lemne. Preturi accesibile si service local.</li>
+        </ul>
+
+        <h3>Montaj: ce trebuie sa stii</h3>
+        <p>Montajul unei <strong>centrale termice pe gaz</strong> trebuie facut de un <strong>instalator autorizat ISCIR</strong>. Fara montaj autorizat, garantia nu este valabila si asigurarea casei nu acopera eventuale daune. Costul montajului variaza intre 500-1.500 RON in functie de complexitate si zona.</p>
+        <p>Centralele pe gaz murale se monteaza pe perete, de obicei in bucatarie sau camera tehnica. Necesita cos de fum coaxial (evacuare gaze + admisie aer) si racord la gaz. Centralele pe peleti si lemne se monteaza pe podea in camera tehnica si necesita cos de fum vertical.</p>
+        <p><strong>Centrala termica pret cu montaj</strong>: adauga 500-1.500 RON la pretul centralei pentru montajul pe gaz si 800-2.000 RON pentru montajul pe peleti sau lemne (care include si executia cosului de fum daca nu exista).</p>
+
+        <h3>Revizie si intretinere anuala</h3>
+        <p><strong>Revizia centralei termice</strong> este obligatorie anual si costa 150-350 RON. Include curatarea arzatorului, verificarea presiunii, analiza gazelor de ardere si ajustarea parametrilor. O centrala fara revizie pierde 5-10% din eficienta pe an si poate deveni periculoasa.</p>
+        <p>La centralele pe peleti: curatarea arzatorului si a schimbatorului la fiecare 1-2 saptamani. Golirea cenusarului la cateva zile. La centralele pe lemne: golirea cenusii zilnic, curatarea schimbatorului saptamanal.</p>
+        <div class="guide__tip">
+          <strong>Important:</strong>
+          <p>Inainte de fiecare sezon rece, verifica presiunea din instalatie (ideal 1.2-1.5 bar), aeriseste caloriferele si fa revizia la centrala. O instalatie bine intretinuta functioneaza eficient si sigur 15-20 de ani.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPARATIE -->
+  <section id="comparatie">
+    <div class="wrap">
+      <div class="sec-head sec-head--center">
+        <span class="sec-head__tag">Comparatie directa</span>
+        <h2>Toate cele {count} centrale termice, comparate</h2>
+      </div>
+      {[
+        { label: 'Pe Gaz', title: 'Centrale pe gaz in condensare', items: products.gaz },
+        { label: 'Pe Peleti', title: 'Centrale si termoseminee pe peleti', items: products.peleti },
+        { label: 'Pe Lemne', title: 'Centrale si cazane pe lemne', items: products.lemne },
+      ].map(group => group.items?.length > 0 && (
+        <div class="comp-group">
+          <div class="comp-group__head"><span class="comp-group__label">{group.label}</span><span class="comp-group__title">{group.title}</span></div>
+          <div class="comp-scroll"><table class="comp-table">
+            <thead><tr><th>Model</th><th>Putere</th><th>Tip</th><th>Special</th><th>Oferta</th></tr></thead>
+            <tbody>{group.items.map(p => (
+              <tr>
+                <td><img src={`/assets/images/products/${p.slug}.webp`} alt="" width="30" height="30" loading="lazy" class="comp-table__thumb" />{p.name.replace('Centrala termica murala in condensare ','').replace('Centrala termica pe gaz in condensare ','').replace('Centrala termica in condensare ','').replace('Centrala termica in condensatie inc/acm, ','').replace('Set Centrala termica 24 kw ','').replace('Centrala murala in condensare ','').replace('Termosemineu centrala pe peleti ','').replace('Centrala pe peleti ','').replace('Centrala termica monobloc pe peleti ','').replace('Termosemineu pe peleti ','').replace('Centrala peleti ','').replace('Semineu pe peleti cu aer cald ','').replace('Centrala termica compacta pe peleti ','').replace('Centrala pe combustibil solid, lemn, carbune, ','').replace('Centrala/Cazan pe lemn/carbune ','').replace('Cazan pe lemne, din tabla de otel, 28 kW, ','').replace('Pachet centrala pe lemn ','').replace('Cazan pe combustibil solid ','').replace('Centrala pe lemne cu gazeificare ','').slice(0,40)}</td>
+                <td>{p.specs.putere}</td>
+                <td>{p.specs.tip || p.specs.combustibil}</td>
+                <td>{p.specs.special}</td>
+                <td><a href={`/out/${p.slug}/`} class="comp-table__cta" rel="nofollow sponsored noopener" target="_blank">Vezi pret</a></td>
+              </tr>
+            ))}</tbody>
+          </table></div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" style="background:var(--surface-alt)">
+    <div class="wrap">
+      <div class="sec-head sec-head--center">
+        <span class="sec-head__tag">Intrebari frecvente</span>
+        <h2>Ce trebuie sa stii inainte sa cumperi o centrala termica</h2>
+      </div>
+      <div class="faq-grid">
+        <div class="faq-card"><button class="faq-card__q" aria-expanded="false">Ce centrala termica sa cumpar in 2026?</button><div class="faq-card__a">Depinde de combustibil si suprafata. Pe gaz: Ariston CLAS ONE WIFI 24 pentru apartamente, Viessmann Vitodens 050-W pentru case. Pe peleti: Fornello Pellet King 35 kW. Pe lemne: Fornello JOKER 24 kW cu automatizare.</div></div>
+        <div class="faq-card"><button class="faq-card__q" aria-expanded="false">Centrala pe gaz vs peleti vs lemne?</button><div class="faq-card__a">Gaz: cel mai confortabil, fara alimentare manuala. Peleti: automatizat, combustibil ieftin, autonomie 2-4 zile. Lemne: cel mai ieftin combustibil dar necesita alimentare manuala de 2-3 ori pe zi.</div></div>
+        <div class="faq-card"><button class="faq-card__q" aria-expanded="false">Cat costa incalzirea pe gaz vs peleti vs lemne?</button><div class="faq-card__a">Pe gaz: 3.000-5.000 RON/sezon. Pe peleti: 2.500-4.000 RON/sezon. Pe lemne: 1.500-2.500 RON/sezon. Variaza in functie de suprafata si izolatie.</div></div>
+        <div class="faq-card"><button class="faq-card__q" aria-expanded="false">Ce putere trebuie sa aiba centrala?</button><div class="faq-card__a">1 kW per 10 mp de suprafata incalzita cu izolatie medie. Casa de 150 mp necesita 15-18 kW. Casa veche fara izolatie necesita 20-25 kW.</div></div>
+        <div class="faq-card"><button class="faq-card__q" aria-expanded="false">Merita o centrala in condensare?</button><div class="faq-card__a">Da. Randamentul de 108% vs 92% la una conventionala inseamna 15-20% economie la gaz. Diferenta de pret se recupereaza in 2-3 sezoane.</div></div>
+        <div class="faq-card"><button class="faq-card__q" aria-expanded="false">Ce inseamna centrala cu gazeificare?</button><div class="faq-card__a">Gazeificarea transforma lemnul in gaz combustibil inainte de ardere. Randamentul creste de la 60-75% la peste 90%. Consumul de lemne scade cu 30-40%.</div></div>
+        <div class="faq-card"><button class="faq-card__q" aria-expanded="false">Ce brand de centrala pe gaz e cel mai bun?</button><div class="faq-card__a">Viessmann si Vaillant sunt referinta in calitate germana. Ariston ofera cel mai bun raport calitate-pret cu Wi-Fi. Motan are cel mai bun service in Romania.</div></div>
+        <div class="faq-card"><button class="faq-card__q" aria-expanded="false">Cand e cel mai bun moment sa cumpar?</button><div class="faq-card__a">Vara (iunie-august) cand cererea e mica si preturile sunt mai mici cu 10-15%. Evita toamna cand cererea explodeaza si instalatorii au program plin.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="endcta">
+    <div class="wrap">
+      <div class="endcta__inner">
+        <p class="endcta__q">Alege tipul de incalzire</p>
+        <div class="endcta__cards">
+          <a href="#gaz" class="endcta__card">
+            <span class="endcta__emoji">&#128293;</span>
+            <span class="endcta__fuel">Gaz natural</span>
+            <span class="endcta__desc">7 centrale in condensare cu Wi-Fi</span>
+            <span class="endcta__go">Ariston, Viessmann, Vaillant &rarr;</span>
+          </a>
+          <a href="#peleti" class="endcta__card">
+            <span class="endcta__emoji">&#127795;</span>
+            <span class="endcta__fuel">Peleti</span>
+            <span class="endcta__desc">7 centrale cu automatizare, 8-40 kW</span>
+            <span class="endcta__go">Fornello, Fiama Fuoco &rarr;</span>
+          </a>
+          <a href="#lemne" class="endcta__card">
+            <span class="endcta__emoji">&#129717;</span>
+            <span class="endcta__fuel">Lemne</span>
+            <span class="endcta__desc">6 cazane si centrale, 24-46 kW</span>
+            <span class="endcta__go">Fornello, Termax, Arca &rarr;</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
