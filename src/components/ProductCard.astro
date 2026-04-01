@@ -22,7 +22,7 @@ const specEntries = Object.entries(specs);
     <h3 class="card__title">{name}</h3>
     <div class="card__tags">
       {specEntries.map(([k, v]) => (
-        <span class="card__tag"><em>{k}</em>{v}</span>
+        <span class="card__tag"><span class="card__tag-key">{k}</span>{v}</span>
       ))}
     </div>
     {summary && <p class="card__desc">{summary}</p>}

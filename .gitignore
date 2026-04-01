@@ -22,3 +22,16 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# claude
+.claude/
+skills-lock.json
+
+# wrangler
+.wrangler/
+
+# lighthouse reports
+lighthouse-*.json
+
+# vscode
+.vscode/
