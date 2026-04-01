@@ -38,12 +38,12 @@ const isoNow = now.toISOString();
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-  <meta name="theme-color" content="#2a2d35" />
+  <meta name="theme-color" content="#0f172a" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'" />
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" /></noscript>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" /></noscript>
 
   <style is:global>
     @import '../styles/global.css';
@@ -68,7 +68,7 @@ const isoNow = now.toISOString();
     (function(){var c=localStorage.getItem('cookie_consent');if(!c)document.getElementById('cookieBanner').classList.add('show');document.getElementById('cookieAccept').addEventListener('click',function(){localStorage.setItem('cookie_consent','ok');document.getElementById('cookieBanner').classList.remove('show')});document.getElementById('cookieDecline').addEventListener('click',function(){localStorage.setItem('cookie_consent','no');document.getElementById('cookieBanner').classList.remove('show')})})();
     (function(){var b=document.getElementById('toTop');window.addEventListener('scroll',function(){b.classList.toggle('show',window.scrollY>600)});b.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})})})();
     document.querySelectorAll('.faq-card__q').forEach(function(q){q.addEventListener('click',function(){var item=this.parentElement;item.classList.toggle('active');this.setAttribute('aria-expanded',item.classList.contains('active'))})});
-    (function(){var burger=document.getElementById('navBurger'),drawer=document.getElementById('navDrawer'),scrim=document.getElementById('navScrim'),close=document.getElementById('navClose');if(!burger||!drawer)return;function open(){drawer.classList.add('open');document.body.style.overflow='hidden'}function shut(){drawer.classList.remove('open');document.body.style.overflow=''}burger.addEventListener('click',open);scrim.addEventListener('click',shut);close.addEventListener('click',shut);drawer.querySelectorAll('.nav__panel a').forEach(function(a){a.addEventListener('click',shut)})})();
+    (function(){var burger=document.getElementById('navBurger'),drawer=document.getElementById('navDrawer'),scrim=document.getElementById('navScrim'),close=document.getElementById('navClose');if(!burger||!drawer)return;function open(){drawer.classList.add('open');document.body.style.overflow='hidden'}function shut(){drawer.classList.remove('open');document.body.style.overflow=''}burger.addEventListener('click',open);scrim.addEventListener('click',shut);close.addEventListener('click',shut);drawer.querySelectorAll('.nav__sheet a').forEach(function(a){a.addEventListener('click',shut)})})();
     if(!window.matchMedia('(prefers-reduced-motion:reduce)').matches){var obs=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('vis');obs.unobserve(x.target)}})},{threshold:.1});document.querySelectorAll('.fade-up').forEach(function(el){obs.observe(el)})}
   </script>
 </body>

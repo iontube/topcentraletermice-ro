@@ -16,56 +16,47 @@ const { name, slug, affiliate, specs, review } = Astro.props;
 const imgSrc = `/assets/images/products/${slug}.webp`;
 const reviewId = 'recenzie-' + name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-+$/,'');
 ---
-<article class="review" id={reviewId}>
-  <div class="review__top">
-    <div class="review__img">
-      <img src={imgSrc} alt={name} width="120" height="120" loading="lazy" />
+<article class="rev" id={reviewId}>
+  <div class="rev__header">
+    <div class="rev__photo">
+      <img src={imgSrc} alt={name} width="140" height="140" loading="lazy" />
     </div>
-    <div class="review__meta">
+    <div class="rev__info">
       <h3>{name}</h3>
-      <div class="review__specs">
+      <div class="rev__chips">
         {Object.entries(specs).map(([k, v]) => (
-          <div class="review__spec"><strong>{k}</strong><span>{v}</span></div>
+          <span class="rev__chip"><strong>{k}</strong>{v}</span>
         ))}
       </div>
     </div>
   </div>
 
-  <div class="review__body">
-    {review.paragrafe.map(p => <p set:html={p} />)}
+  <div class="rev__columns">
+    <div class="rev__main">
+      {review.paragrafe.map(p => <p set:html={p} />)}
+    </div>
+    <aside class="rev__side">
+      <div class="rev__target">
+        <span class="rev__side-label">Recomandat pentru</span>
+        <p>{review.pentruCine}</p>
+      </div>
+      <div class="rev__pros">
+        <span class="rev__side-label">Avantaje</span>
+        <ul>{review.pro.map(p => <li>{p}</li>)}</ul>
+      </div>
+      <div class="rev__cons">
+        <span class="rev__side-label">Dezavantaje</span>
+        <ul>{review.contra.map(c => <li>{c}</li>)}</ul>
+      </div>
+    </aside>
   </div>
 
-  <div class="review__who">
-    <svg viewBox="0 0 20 20" width="18" height="18" fill="none"><circle cx="10" cy="7" r="3.5" stroke="currentColor" stroke-width="1.5"/><path d="M3.5 17.5c0-3.6 2.9-6.5 6.5-6.5s6.5 2.9 6.5 6.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-    <div>
-      <span class="review__who-label">Recomandat pentru</span>
-      <p>{review.pentruCine}</p>
-    </div>
-  </div>
-
-  <div class="review__grid">
-    <div class="review__plus">
-      <span class="review__plus-head">
-        <svg viewBox="0 0 16 16" width="14" height="14" fill="none"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5"/><path d="M8 5v6M5 8h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-        Ce ne-a placut
-      </span>
-      <ul>{review.pro.map(p => <li>{p}</li>)}</ul>
-    </div>
-    <div class="review__minus">
-      <span class="review__minus-head">
-        <svg viewBox="0 0 16 16" width="14" height="14" fill="none"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5"/><path d="M5 8h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-        De avut in vedere
-      </span>
-      <ul>{review.contra.map(c => <li>{c}</li>)}</ul>
-    </div>
-  </div>
-
-  <div class="review__takeaway">
-    <svg viewBox="0 0 20 20" width="16" height="16" fill="none"><path d="M10 1l2.4 5.8 6.1.5-4.6 4 1.4 6.2L10 14.3 4.7 17.5l1.4-6.2-4.6-4 6.1-.5L10 1z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+  <div class="rev__verdict">
+    <span class="rev__verdict-label">Verdict</span>
     <p>{review.verdict}</p>
   </div>
 
-  <div class="review__cta-wrap">
-    <a href={`/out/${slug}/`} class="btn btn--cta" rel="nofollow sponsored noopener" target="_blank">Vezi pret si disponibilitate</a>
+  <div class="rev__cta">
+    <a href={`/out/${slug}/`} class="btn btn--cta btn--full" rel="nofollow sponsored noopener" target="_blank">Vezi pret si disponibilitate</a>
   </div>
 </article>

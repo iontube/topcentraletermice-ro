@@ -1,33 +1,31 @@
 ---
 ---
-<nav class="nav">
-  <div class="nav__top">
-    <a href="/" class="nav__logo"><img src="/assets/images/logo-topcentraletermice.webp" alt="Top Centrale Termice" height="56" width="157" /></a>
-    <div class="nav__actions">
-      <a href="#top-centrale" class="nav__cta">Vezi Recomandarile</a>
-      <button class="nav__burger" id="navBurger" aria-label="Meniu"><span></span></button>
+<header class="nav">
+  <div class="nav__bar">
+    <a href="/" class="nav__logo"><img src="/assets/images/logo-topcentraletermice.webp" alt="Top Centrale Termice" height="50" width="138" /></a>
+    <div class="nav__links">
+      <a href="#gaz" class="nav__link">Gaz</a>
+      <a href="#peleti" class="nav__link">Peleti</a>
+      <a href="#lemne" class="nav__link">Lemne</a>
+      <a href="#comparatie" class="nav__link">Comparatie</a>
+      <a href="#recomandari" class="nav__link">Recomandari</a>
+      <a href="#faq" class="nav__link">FAQ</a>
     </div>
+    <a href="#top-centrale" class="nav__action">Top 3 &darr;</a>
+    <button class="nav__burger" id="navBurger" aria-label="Meniu">
+      <span></span><span></span>
+    </button>
   </div>
-  <div class="nav__tabs">
-    <div class="nav__tabs-inner">
-      <a href="#gaz" class="nav__tab nav__tab--active">Pe Gaz</a>
-      <a href="#peleti" class="nav__tab">Pe Peleti</a>
-      <a href="#lemne" class="nav__tab">Pe Lemne</a>
-      <a href="#comparatie" class="nav__tab">Comparatie</a>
-      <a href="#recomandari" class="nav__tab">Recomandari</a>
-      <a href="#faq" class="nav__tab">FAQ</a>
-    </div>
-  </div>
-</nav>
+</header>
 
-<div class="nav__drawer" id="navDrawer">
-  <div class="nav__scrim" id="navScrim"></div>
-  <div class="nav__panel">
-    <div class="nav__panel-head">
-      <div class="nav__panel-title">Meniu</div>
-      <button class="nav__panel-close" id="navClose">&times;</button>
+<div class="nav__mobile" id="navDrawer">
+  <div class="nav__overlay" id="navScrim"></div>
+  <div class="nav__sheet">
+    <div class="nav__sheet-top">
+      <span class="nav__sheet-label">Navigare</span>
+      <button class="nav__sheet-close" id="navClose">&times;</button>
     </div>
-    <a href="#top-centrale">Top Centrale</a>
+    <a href="#top-centrale">Top 3 Centrale</a>
     <a href="#gaz">Centrale pe Gaz</a>
     <a href="#peleti">Centrale pe Peleti</a>
     <a href="#lemne">Centrale pe Lemne</a>

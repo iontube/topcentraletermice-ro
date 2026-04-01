@@ -14,21 +14,21 @@ const reviewId = 'recenzie-' + name.toLowerCase().replace(/[^a-z0-9]+/g, '-').re
 const specEntries = Object.entries(specs);
 ---
 <article class="card">
-  {badge && <span class={`card__badge card__badge--${badgeType}`}>{badge}</span>}
-  <div class="card__img">
-    <img src={imgSrc} alt={name} width="200" height="145" loading="lazy" />
+  {badge && <span class={`card__flag card__flag--${badgeType}`}>{badge}</span>}
+  <div class="card__visual">
+    <img src={imgSrc} alt={name} width="280" height="200" loading="lazy" />
   </div>
-  <div class="card__body">
-    <div class="card__specs">
+  <div class="card__content">
+    <h3 class="card__title">{name}</h3>
+    <div class="card__tags">
       {specEntries.map(([k, v]) => (
-        <span class="card__spec"><strong>{k}</strong><span>{v}</span></span>
+        <span class="card__tag"><em>{k}</em>{v}</span>
       ))}
     </div>
-    <h3 class="card__name">{name}</h3>
-    {summary && <p class="card__summary">{summary}</p>}
-    <div class="card__foot">
-      <a href={`/out/${slug}/`} class="card__cta" rel="nofollow sponsored noopener" target="_blank">Vezi Oferta</a>
-      <a href={`#${reviewId}`} class="card__review-link">Recenzie</a>
+    {summary && <p class="card__desc">{summary}</p>}
+    <div class="card__actions">
+      <a href={`/out/${slug}/`} class="card__buy" rel="nofollow sponsored noopener" target="_blank">Vezi Oferta</a>
+      <a href={`#${reviewId}`} class="card__more">Recenzie &darr;</a>
     </div>
   </div>
 </article>

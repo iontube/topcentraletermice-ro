@@ -21,70 +21,69 @@ const isoDate = now.toISOString().split('T')[0];
 
   <!-- HERO -->
   <section class="hero" id="top">
-    <div class="hero__inner">
-      <div class="hero__left">
-        <div class="hero__tag"><time datetime={isoDate}>Actualizat {updated}</time></div>
-        <h1>Ce centrala termica sa cumpar in <em>2026</em></h1>
-        <p class="hero__sub">{count} centrale termice comparate pe putere, consum si fiabilitate. Centrale pe gaz cu condensare, pe peleti cu automatizare si pe lemne cu gazeificare.</p>
-        <div class="hero__actions">
-          <a href="#top-centrale" class="btn btn--fire">Vezi top centrale</a>
-          <a href="#recomandari" class="btn btn--ghost">Cum alegi corect</a>
+    <div class="hero__grid">
+      <div class="hero__text">
+        <span class="hero__date"><time datetime={isoDate}>Actualizat {updated}</time></span>
+        <h1>Ce centrala termica sa cumpar in <span class="hero__accent">2026</span></h1>
+        <p class="hero__lead">{count} centrale termice comparate pe putere, consum si fiabilitate. Centrale pe gaz cu condensare, pe peleti cu automatizare si pe lemne cu gazeificare.</p>
+        <div class="hero__btns">
+          <a href="#top-centrale" class="btn btn--primary">Top 3 recomandate</a>
+          <a href="#recomandari" class="btn btn--secondary">Cum alegi corect</a>
         </div>
       </div>
-      <div class="hero__right">
-        <div class="hero__stats">
-          <div class="hero__stat">
-            <div class="hero__stat-val">{count}</div>
-            <div class="hero__stat-lbl">Modele</div>
+      <div class="hero__panel">
+        <div class="hero__counters">
+          <div class="hero__counter">
+            <span class="hero__counter-num">{count}</span>
+            <span class="hero__counter-txt">Modele testate</span>
           </div>
-          <div class="hero__stat">
-            <div class="hero__stat-val">3</div>
-            <div class="hero__stat-lbl">Combustibili</div>
+          <div class="hero__counter">
+            <span class="hero__counter-num">3</span>
+            <span class="hero__counter-txt">Tipuri combustibil</span>
           </div>
-          <div class="hero__stat">
-            <div class="hero__stat-val">2026</div>
-            <div class="hero__stat-lbl">Actualizat</div>
+          <div class="hero__counter">
+            <span class="hero__counter-num">2026</span>
+            <span class="hero__counter-txt">Actualizat</span>
           </div>
         </div>
-        <p class="hero__right-text">Ariston, Viessmann, Vaillant, Motan, Ferroli si Fornello. De la 24 kW pentru apartamente la 46 kW pentru case mari.</p>
+        <div class="hero__brands">Ariston &middot; Viessmann &middot; Vaillant &middot; Motan &middot; Ferroli &middot; Fornello</div>
       </div>
     </div>
+    <div class="hero__gridline"></div>
   </section>
 
   <!-- TOP 3 -->
-  <section id="top-centrale">
+  <section id="top-centrale" class="sec--alt">
     <div class="wrap">
-      <div class="sec-head sec-head--center">
-        <span class="sec-head__tag">Top 3 recomandate</span>
-        <h2>Cele mai bune centrale termice in 2026</h2>
-        <p>Cate o recomandare per tip de combustibil. Citeste recenziile complete mai jos.</p>
-      </div>
-      <div class="top3">
-        <a href={`#recenzie-${products.gaz[0].name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-+$/, '')}`} class="top3__card top3__card--gold">
-          <span class="top3__medal top3__medal--gold">1</span>
-          <div class="top3__visual"><img src={`/assets/images/products/${products.gaz[0].slug}.webp`} alt={products.gaz[0].name} width="68" height="68" loading="lazy" /></div>
-          <div class="top3__body">
-            <span class="top3__cat">Pe Gaz: Best Buy</span>
-            <span class="top3__name">{products.gaz[0].name}</span>
-            <span class="top3__why">Wi-Fi, condensare, schimbator inox la cel mai bun pret</span>
+      <div class="sec-label">Top 3 recomandate</div>
+      <h2>Cele mai bune centrale termice in 2026</h2>
+      <p class="sec-desc">Cate o recomandare per tip de combustibil. Citeste recenziile complete mai jos.</p>
+      <div class="podium">
+        <a href={`#recenzie-${products.gaz[0].name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-+$/, '')}`} class="podium__item podium__item--1">
+          <span class="podium__rank">01</span>
+          <img src={`/assets/images/products/${products.gaz[0].slug}.webp`} alt={products.gaz[0].name} width="72" height="72" loading="lazy" class="podium__img" />
+          <div class="podium__detail">
+            <span class="podium__type">Pe Gaz: Best Buy</span>
+            <span class="podium__name">{products.gaz[0].name}</span>
+            <span class="podium__reason">Wi-Fi, condensare, schimbator inox la cel mai bun pret</span>
           </div>
         </a>
-        <a href={`#recenzie-${products.peleti[2].name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-+$/, '')}`} class="top3__card top3__card--silver">
-          <span class="top3__medal top3__medal--silver">2</span>
-          <div class="top3__visual"><img src={`/assets/images/products/${products.peleti[2].slug}.webp`} alt={products.peleti[2].name} width="68" height="68" loading="lazy" /></div>
-          <div class="top3__body">
-            <span class="top3__cat">Pe Peleti: Complet echipat</span>
-            <span class="top3__name">{products.peleti[2].name}</span>
-            <span class="top3__why">35 kW cu telecomanda, aprindere automata si buncar 80L</span>
+        <a href={`#recenzie-${products.peleti[2].name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-+$/, '')}`} class="podium__item podium__item--2">
+          <span class="podium__rank">02</span>
+          <img src={`/assets/images/products/${products.peleti[2].slug}.webp`} alt={products.peleti[2].name} width="72" height="72" loading="lazy" class="podium__img" />
+          <div class="podium__detail">
+            <span class="podium__type">Pe Peleti: Complet echipat</span>
+            <span class="podium__name">{products.peleti[2].name}</span>
+            <span class="podium__reason">35 kW cu telecomanda, aprindere automata si buncar 80L</span>
           </div>
         </a>
-        <a href={`#recenzie-${products.lemne[0].name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-+$/, '')}`} class="top3__card top3__card--bronze">
-          <span class="top3__medal top3__medal--bronze">3</span>
-          <div class="top3__visual"><img src={`/assets/images/products/${products.lemne[0].slug}.webp`} alt={products.lemne[0].name} width="68" height="68" loading="lazy" /></div>
-          <div class="top3__body">
-            <span class="top3__cat">Pe Lemne: Cu automatizare</span>
-            <span class="top3__name">{products.lemne[0].name}</span>
-            <span class="top3__why">24 kW cu ventilator si control automat la cel mai mic pret</span>
+        <a href={`#recenzie-${products.lemne[0].name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-+$/, '')}`} class="podium__item podium__item--3">
+          <span class="podium__rank">03</span>
+          <img src={`/assets/images/products/${products.lemne[0].slug}.webp`} alt={products.lemne[0].name} width="72" height="72" loading="lazy" class="podium__img" />
+          <div class="podium__detail">
+            <span class="podium__type">Pe Lemne: Cu automatizare</span>
+            <span class="podium__name">{products.lemne[0].name}</span>
+            <span class="podium__reason">24 kW cu ventilator si control automat la cel mai mic pret</span>
           </div>
         </a>
       </div>
@@ -93,14 +92,12 @@ const isoDate = now.toISOString().split('T')[0];
 
   <!-- GAZ -->
   {products.gaz?.length > 0 && (
-  <section id="gaz" class="fade-up" style="background:var(--surface-alt)">
+  <section id="gaz" class="fade-up">
     <div class="wrap">
-      <div class="sec-head">
-        <span class="sec-head__tag">Centrale pe gaz</span>
-        <h2>Cele mai bune centrale termice pe gaz in condensare</h2>
-        <p>7 centrale pe gaz cu condensare comparate. Modele cu Wi-Fi, control vocal, schimbator din otel inoxidabil si kit evacuare inclus. Ariston, Viessmann, Vaillant, Immergas, Motan si Ferroli.</p>
-      </div>
-      <div class="products">
+      <div class="sec-label">Centrale pe gaz</div>
+      <h2>Cele mai bune centrale termice pe gaz in condensare</h2>
+      <p class="sec-desc">7 centrale pe gaz cu condensare comparate. Modele cu Wi-Fi, control vocal, schimbator din otel inoxidabil si kit evacuare inclus. Ariston, Viessmann, Vaillant, Immergas, Motan si Ferroli.</p>
+      <div class="grid-cards">
         {products.gaz.map((p, i) => (
           <ProductCard name={p.name} slug={p.slug} affiliate={p.affiliate} specs={p.specs} summary={p.summary} badge={i === 0 ? 'Best Buy Gaz' : undefined} badgeType="top" />
         ))}
@@ -110,9 +107,10 @@ const isoDate = now.toISOString().split('T')[0];
   )}
 
   {products.gaz?.length > 0 && (
-  <section>
+  <section class="sec--alt">
     <div class="wrap">
-      <div class="sec-head"><span class="sec-head__tag">Analize detaliate</span><h2>Recenzie detaliata pentru fiecare centrala pe gaz</h2></div>
+      <div class="sec-label">Analize detaliate</div>
+      <h2>Recenzie detaliata pentru fiecare centrala pe gaz</h2>
       {products.gaz.map(p => <ProductReview name={p.name} slug={p.slug} affiliate={p.affiliate} specs={p.specs} review={p.review} />)}
     </div>
   </section>
@@ -120,14 +118,12 @@ const isoDate = now.toISOString().split('T')[0];
 
   <!-- PELETI -->
   {products.peleti?.length > 0 && (
-  <section id="peleti" class="fade-up" style="background:var(--surface-alt)">
+  <section id="peleti" class="fade-up">
     <div class="wrap">
-      <div class="sec-head">
-        <span class="sec-head__tag">Centrale pe peleti</span>
-        <h2>Cele mai bune centrale termice pe peleti</h2>
-        <p>7 centrale si termoseminee pe peleti comparate. Modele cu aprindere automata, telecomanda, Wi-Fi si buncari de la 25 la 88 kg. Fornello si Fiama Fuoco de la 8 la 40 kW.</p>
-      </div>
-      <div class="products">
+      <div class="sec-label">Centrale pe peleti</div>
+      <h2>Cele mai bune centrale termice pe peleti</h2>
+      <p class="sec-desc">7 centrale si termoseminee pe peleti comparate. Modele cu aprindere automata, telecomanda, Wi-Fi si buncari de la 25 la 88 kg. Fornello si Fiama Fuoco de la 8 la 40 kW.</p>
+      <div class="grid-cards">
         {products.peleti.map((p, i) => (
           <ProductCard name={p.name} slug={p.slug} affiliate={p.affiliate} specs={p.specs} summary={p.summary} badge={i === 2 ? 'Best Value' : undefined} badgeType="value" />
         ))}
@@ -137,9 +133,10 @@ const isoDate = now.toISOString().split('T')[0];
   )}
 
   {products.peleti?.length > 0 && (
-  <section>
+  <section class="sec--alt">
     <div class="wrap">
-      <div class="sec-head"><span class="sec-head__tag">Analize detaliate</span><h2>Recenzie detaliata pentru fiecare centrala pe peleti</h2></div>
+      <div class="sec-label">Analize detaliate</div>
+      <h2>Recenzie detaliata pentru fiecare centrala pe peleti</h2>
       {products.peleti.map(p => <ProductReview name={p.name} slug={p.slug} affiliate={p.affiliate} specs={p.specs} review={p.review} />)}
     </div>
   </section>
@@ -147,14 +144,12 @@ const isoDate = now.toISOString().split('T')[0];
 
   <!-- LEMNE -->
   {products.lemne?.length > 0 && (
-  <section id="lemne" class="fade-up" style="background:var(--surface-alt)">
+  <section id="lemne" class="fade-up">
     <div class="wrap">
-      <div class="sec-head">
-        <span class="sec-head__tag">Centrale pe lemne</span>
-        <h2>Cele mai bune centrale termice pe lemne</h2>
-        <p>6 centrale si cazane pe lemne comparate. De la cazane simple la centrale cu gazeificare si pachete complete cu calorifere. Fornello, Termax, BlauTech, ECO Plus si Arca de la 24 la 46 kW.</p>
-      </div>
-      <div class="products">
+      <div class="sec-label">Centrale pe lemne</div>
+      <h2>Cele mai bune centrale termice pe lemne</h2>
+      <p class="sec-desc">6 centrale si cazane pe lemne comparate. De la cazane simple la centrale cu gazeificare si pachete complete cu calorifere. Fornello, Termax, BlauTech, ECO Plus si Arca de la 24 la 46 kW.</p>
+      <div class="grid-cards">
         {products.lemne.map((p, i) => (
           <ProductCard name={p.name} slug={p.slug} affiliate={p.affiliate} specs={p.specs} summary={p.summary} badge={i === 0 ? 'Cu automatizare' : undefined} badgeType="cheap" />
         ))}
@@ -164,21 +159,20 @@ const isoDate = now.toISOString().split('T')[0];
   )}
 
   {products.lemne?.length > 0 && (
-  <section>
+  <section class="sec--alt">
     <div class="wrap">
-      <div class="sec-head"><span class="sec-head__tag">Analize detaliate</span><h2>Recenzie detaliata pentru fiecare centrala pe lemne</h2></div>
+      <div class="sec-label">Analize detaliate</div>
+      <h2>Recenzie detaliata pentru fiecare centrala pe lemne</h2>
       {products.lemne.map(p => <ProductReview name={p.name} slug={p.slug} affiliate={p.affiliate} specs={p.specs} review={p.review} />)}
     </div>
   </section>
   )}
 
-  <!-- RECOMANDARI placeholder -->
-  <section id="recomandari" style="background:var(--surface-alt)">
+  <!-- RECOMANDARI -->
+  <section id="recomandari">
     <div class="wrap">
-      <div class="sec-head">
-        <span class="sec-head__tag">Recomandari 2026</span>
-        <h2>Cum alegi cea mai buna centrala termica</h2>
-      </div>
+      <div class="sec-label">Recomandari 2026</div>
+      <h2>Cum alegi cea mai buna centrala termica</h2>
       <div class="guide">
         <img src="/assets/images/cum-alegi-cea-mai-buna-centrala-termica-2026.webp" alt="Cum alegi cea mai buna centrala termica in 2026 - recomandari practice" width="1200" height="600" loading="lazy" style="border-radius:var(--r-lg);margin-bottom:1.5rem;width:100%;height:auto" />
 
@@ -242,7 +236,7 @@ const isoDate = now.toISOString().split('T')[0];
         <h3>Revizie si intretinere anuala</h3>
         <p><strong>Revizia centralei termice</strong> este obligatorie anual si costa 150-350 RON. Include curatarea arzatorului, verificarea presiunii, analiza gazelor de ardere si ajustarea parametrilor. O centrala fara revizie pierde 5-10% din eficienta pe an si poate deveni periculoasa.</p>
         <p>La centralele pe peleti: curatarea arzatorului si a schimbatorului la fiecare 1-2 saptamani. Golirea cenusarului la cateva zile. La centralele pe lemne: golirea cenusii zilnic, curatarea schimbatorului saptamanal.</p>
-        <div class="guide__tip">
+        <div class="guide__callout">
           <strong>Important:</strong>
           <p>Inainte de fiecare sezon rece, verifica presiunea din instalatie (ideal 1.2-1.5 bar), aeriseste caloriferele si fa revizia la centrala. O instalatie bine intretinuta functioneaza eficient si sigur 15-20 de ani.</p>
         </div>
@@ -251,28 +245,26 @@ const isoDate = now.toISOString().split('T')[0];
   </section>
 
   <!-- COMPARATIE -->
-  <section id="comparatie">
+  <section id="comparatie" class="sec--alt">
     <div class="wrap">
-      <div class="sec-head sec-head--center">
-        <span class="sec-head__tag">Comparatie directa</span>
-        <h2>Toate cele {count} centrale termice, comparate</h2>
-      </div>
+      <div class="sec-label">Comparatie directa</div>
+      <h2>Toate cele {count} centrale termice, comparate</h2>
       {[
         { label: 'Pe Gaz', title: 'Centrale pe gaz in condensare', items: products.gaz },
         { label: 'Pe Peleti', title: 'Centrale si termoseminee pe peleti', items: products.peleti },
         { label: 'Pe Lemne', title: 'Centrale si cazane pe lemne', items: products.lemne },
       ].map(group => group.items?.length > 0 && (
-        <div class="comp-group">
-          <div class="comp-group__head"><span class="comp-group__label">{group.label}</span><span class="comp-group__title">{group.title}</span></div>
-          <div class="comp-scroll"><table class="comp-table">
+        <div class="tbl-group">
+          <div class="tbl-group__head"><span class="tbl-group__badge">{group.label}</span><span class="tbl-group__title">{group.title}</span></div>
+          <div class="tbl-scroll"><table class="tbl">
             <thead><tr><th>Model</th><th>Putere</th><th>Tip</th><th>Special</th><th>Oferta</th></tr></thead>
             <tbody>{group.items.map(p => (
               <tr>
-                <td><img src={`/assets/images/products/${p.slug}.webp`} alt="" width="30" height="30" loading="lazy" class="comp-table__thumb" />{p.name.replace('Centrala termica murala in condensare ','').replace('Centrala termica pe gaz in condensare ','').replace('Centrala termica in condensare ','').replace('Centrala termica in condensatie inc/acm, ','').replace('Set Centrala termica 24 kw ','').replace('Centrala murala in condensare ','').replace('Termosemineu centrala pe peleti ','').replace('Centrala pe peleti ','').replace('Centrala termica monobloc pe peleti ','').replace('Termosemineu pe peleti ','').replace('Centrala peleti ','').replace('Semineu pe peleti cu aer cald ','').replace('Centrala termica compacta pe peleti ','').replace('Centrala pe combustibil solid, lemn, carbune, ','').replace('Centrala/Cazan pe lemn/carbune ','').replace('Cazan pe lemne, din tabla de otel, 28 kW, ','').replace('Pachet centrala pe lemn ','').replace('Cazan pe combustibil solid ','').replace('Centrala pe lemne cu gazeificare ','').slice(0,40)}</td>
+                <td><img src={`/assets/images/products/${p.slug}.webp`} alt="" width="30" height="30" loading="lazy" class="tbl__thumb" />{p.name.replace('Centrala termica murala in condensare ','').replace('Centrala termica pe gaz in condensare ','').replace('Centrala termica in condensare ','').replace('Centrala termica in condensatie inc/acm, ','').replace('Set Centrala termica 24 kw ','').replace('Centrala murala in condensare ','').replace('Termosemineu centrala pe peleti ','').replace('Centrala pe peleti ','').replace('Centrala termica monobloc pe peleti ','').replace('Termosemineu pe peleti ','').replace('Centrala peleti ','').replace('Semineu pe peleti cu aer cald ','').replace('Centrala termica compacta pe peleti ','').replace('Centrala pe combustibil solid, lemn, carbune, ','').replace('Centrala/Cazan pe lemn/carbune ','').replace('Cazan pe lemne, din tabla de otel, 28 kW, ','').replace('Pachet centrala pe lemn ','').replace('Cazan pe combustibil solid ','').replace('Centrala pe lemne cu gazeificare ','').slice(0,40)}</td>
                 <td>{p.specs.putere}</td>
                 <td>{p.specs.tip || p.specs.combustibil}</td>
                 <td>{p.specs.special}</td>
-                <td><a href={`/out/${p.slug}/`} class="comp-table__cta" rel="nofollow sponsored noopener" target="_blank">Vezi pret</a></td>
+                <td><a href={`/out/${p.slug}/`} class="tbl__link" rel="nofollow sponsored noopener" target="_blank">Vezi pret</a></td>
               </tr>
             ))}</tbody>
           </table></div>
@@ -282,13 +274,11 @@ const isoDate = now.toISOString().split('T')[0];
   </section>
 
   <!-- FAQ -->
-  <section id="faq" style="background:var(--surface-alt)">
+  <section id="faq">
     <div class="wrap">
-      <div class="sec-head sec-head--center">
-        <span class="sec-head__tag">Intrebari frecvente</span>
-        <h2>Ce trebuie sa stii inainte sa cumperi o centrala termica</h2>
-      </div>
-      <div class="faq-grid">
+      <div class="sec-label">Intrebari frecvente</div>
+      <h2>Ce trebuie sa stii inainte sa cumperi o centrala termica</h2>
+      <div class="faq-cols">
         <div class="faq-card"><button class="faq-card__q" aria-expanded="false">Ce centrala termica sa cumpar in 2026?</button><div class="faq-card__a">Depinde de combustibil si suprafata. Pe gaz: Ariston CLAS ONE WIFI 24 pentru apartamente, Viessmann Vitodens 050-W pentru case. Pe peleti: Fornello Pellet King 35 kW. Pe lemne: Fornello JOKER 24 kW cu automatizare.</div></div>
         <div class="faq-card"><button class="faq-card__q" aria-expanded="false">Centrala pe gaz vs peleti vs lemne?</button><div class="faq-card__a">Gaz: cel mai confortabil, fara alimentare manuala. Peleti: automatizat, combustibil ieftin, autonomie 2-4 zile. Lemne: cel mai ieftin combustibil dar necesita alimentare manuala de 2-3 ori pe zi.</div></div>
         <div class="faq-card"><button class="faq-card__q" aria-expanded="false">Cat costa incalzirea pe gaz vs peleti vs lemne?</button><div class="faq-card__a">Pe gaz: 3.000-5.000 RON/sezon. Pe peleti: 2.500-4.000 RON/sezon. Pe lemne: 1.500-2.500 RON/sezon. Variaza in functie de suprafata si izolatie.</div></div>
@@ -302,30 +292,28 @@ const isoDate = now.toISOString().split('T')[0];
   </section>
 
   <!-- CTA -->
-  <section class="endcta">
+  <section class="cta-end">
     <div class="wrap">
-      <div class="endcta__inner">
-        <p class="endcta__q">Alege tipul de incalzire</p>
-        <div class="endcta__cards">
-          <a href="#gaz" class="endcta__card">
-            <span class="endcta__emoji">&#128293;</span>
-            <span class="endcta__fuel">Gaz natural</span>
-            <span class="endcta__desc">7 centrale in condensare cu Wi-Fi</span>
-            <span class="endcta__go">Ariston, Viessmann, Vaillant &rarr;</span>
-          </a>
-          <a href="#peleti" class="endcta__card">
-            <span class="endcta__emoji">&#127795;</span>
-            <span class="endcta__fuel">Peleti</span>
-            <span class="endcta__desc">7 centrale cu automatizare, 8-40 kW</span>
-            <span class="endcta__go">Fornello, Fiama Fuoco &rarr;</span>
-          </a>
-          <a href="#lemne" class="endcta__card">
-            <span class="endcta__emoji">&#129717;</span>
-            <span class="endcta__fuel">Lemne</span>
-            <span class="endcta__desc">6 cazane si centrale, 24-46 kW</span>
-            <span class="endcta__go">Fornello, Termax, Arca &rarr;</span>
-          </a>
-        </div>
+      <p class="cta-end__heading">Alege tipul de incalzire</p>
+      <div class="cta-end__grid">
+        <a href="#gaz" class="cta-end__option">
+          <span class="cta-end__icon">&#128293;</span>
+          <span class="cta-end__fuel">Gaz natural</span>
+          <span class="cta-end__info">7 centrale in condensare cu Wi-Fi</span>
+          <span class="cta-end__arrow">Ariston, Viessmann, Vaillant &rarr;</span>
+        </a>
+        <a href="#peleti" class="cta-end__option">
+          <span class="cta-end__icon">&#127795;</span>
+          <span class="cta-end__fuel">Peleti</span>
+          <span class="cta-end__info">7 centrale cu automatizare, 8-40 kW</span>
+          <span class="cta-end__arrow">Fornello, Fiama Fuoco &rarr;</span>
+        </a>
+        <a href="#lemne" class="cta-end__option">
+          <span class="cta-end__icon">&#129717;</span>
+          <span class="cta-end__fuel">Lemne</span>
+          <span class="cta-end__info">6 cazane si centrale, 24-46 kW</span>
+          <span class="cta-end__arrow">Fornello, Termax, Arca &rarr;</span>
+        </a>
       </div>
     </div>
   </section>
