@@ -130,7 +130,7 @@ section{padding:2.5rem 0}
 .btn--fire:hover{background:var(--fire-light);color:#fff;transform:translateY(-1px);box-shadow:0 3px 12px rgba(212,112,10,.2)}
 .btn--outline{border:1.5px solid var(--border);color:var(--ink-mid);background:var(--surface)}
 .btn--outline:hover{border-color:var(--fire);color:var(--fire)}
-.btn--cta{background:var(--fire);color:#fff;padding:.6rem 1.3rem;box-shadow:0 3px 10px rgba(192,96,8,.2)}
+.btn--cta{background:var(--fire-dark);color:#fff;padding:.6rem 1.3rem;box-shadow:0 3px 10px rgba(148,74,6,.2)}
 @media(min-width:768px){.btn--cta{padding:.7rem 1.6rem}}
 .btn--cta:hover{background:var(--fire-dark);color:#fff;transform:translateY(-2px);box-shadow:0 5px 20px rgba(192,96,8,.3)}
 .btn--full{width:100%}
